@@ -7,9 +7,12 @@ def request_page(url) -> BeautifulSoup|None:
         htmlPage=requests.get(url,headers=_headers).text
     except:
         return None
+    
+    # return html parser
     return BeautifulSoup(htmlPage,"html.parser")
 
 def scrape_eventDetails(event:dict,html):
+    # scrape event details for presentation image
     event["Image"] = html.find("img")["src"]
     
     
