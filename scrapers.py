@@ -10,6 +10,7 @@ def scrape_eventList(page:int) -> list[str]|None:
     url = _website + _ufcFilter + _prevFightFilter + _pageFilter + f"{page}"
     
     eventsPage=request_page(url)
+
     # check if request was successful
     if eventsPage == None:
         return None
@@ -28,10 +29,15 @@ def scrape_eventList(page:int) -> list[str]|None:
 def scrape_event_page(eventFilter):
     event = {}
     url = _website + eventFilter
+
     eventPage = request_page(url)
+    # check if request was successful
     if eventPage is None:
         return None
-    # scrape event Title
+    
+    # scrape event page for event title
     event["Title"]=eventPage.find("h2").text #type:ignore
+    
+    # scrape event page for event details section
     eventDetails=eventPage.find("div",attrs={"id": "primaryDetailsContainer"})
     scrape_eventDetails(event,eventDetails)

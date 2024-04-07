@@ -11,5 +11,5 @@ def request_page(url) -> BeautifulSoup|None:
 
 def scrape_eventDetails(event:dict,html):
     event["Image"] = html.find("img")["src"]
-    print(event)
+    
     
