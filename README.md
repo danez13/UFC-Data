@@ -17,3 +17,5 @@ already implemented = ~~implemented~~
     - average fighter data
     - fighter details
     - personal fight list
+  - Data
+    - Json
