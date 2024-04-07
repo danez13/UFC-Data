@@ -1,16 +1,15 @@
-from scrape_helpers import scrape_eventList_page,scrape_event_page
-import scrape_helpers
-import getData
+from scrapers import scrape_eventList,scrape_event_page
+import scrapers
+import scraper_helpers
 # initial
 def init():
         page = 0
         while True:
-            EventList=scrape_eventList_page(page)
+            EventList=scrape_eventList(page)
             if EventList == None:
                 break
             for Event in EventList:
-                eventLink=getData.get_EventLink(Event)
-                scrape_event_page(eventLink)
+                scrape_event_page(Event)
                 break
             break
 
