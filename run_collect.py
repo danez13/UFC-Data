@@ -15,5 +15,4 @@ def init():
             break
 
 if __name__ == "__main__":
-    scrape_helpers.
     init()
