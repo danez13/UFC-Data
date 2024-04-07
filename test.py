@@ -11,30 +11,28 @@ events = set()
 def init():
         page = 0
         while True:
-            rawEventList=scrape_rawPage(page)
-            page+=1
+            rawEventList=scrape_eventList(page)
             print(rawEventList)
-            break
             if rawEventList == None:
                 break
             # for rawEvent in rawEventList:
-            #     link = self.scrape_EventLink(rawEvent)
-            #     fullLink=self.website+link
-            #     event = self.eventScraper(fullLink)
-            #     events.append(event)
+            #     print(rawEvent)
+            #     # link = self.scrape_EventLink(rawEvent)
+            #     # fullLink=self.website+link
+            #     # event = self.eventScraper(fullLink)
+            #     # events.append(event)
             #     break
-            # page +=1
             # break
         return events
 
-def scrape_rawPage(page:int):
+def scrape_eventList(page:int):
         try:
-            url = website + ufcFilter + prevFightFilter + pageFilter + f"{0}"
+            url = website + ufcFilter + prevFightFilter + pageFilter + f"{page}"
             listingPage=requests.get(url).text
-            soup=BeautifulSoup(listingPage,"html.parser")
         except:
             return None
-        print(listingPage)
+        htmlPage=BeautifulSoup(listingPage,"html.parser")
+        return htmlPage
 
-def __main__():
-     init()
+if __name__ == "__main__":
+    init()
