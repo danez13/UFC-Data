@@ -4,15 +4,10 @@ import urllib.request as req
 import datetime
 
 import requests
-
-class webEventScraper():
-    def __init__(self):
-        self.running = True
-        self.website = "https://www.tapology.com"
-        self.events = self.start()
-    def start(self):
+url = "https://www.tapology.com"
+events = set()
+def Collecting():
         page = 0
-        events = []
         while self.running:
             rawEventList=self.scrape_rawPage(page)
             if rawEventList == None:
@@ -26,6 +21,7 @@ class webEventScraper():
             page +=1
             break
         return events
+class webEventScraper():
     def STOP(self):
         self.running = False
         return True
