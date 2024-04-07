@@ -22,19 +22,7 @@ def Collecting():
             break
         return events
 class webEventScraper():
-    def STOP(self):
-        self.running = False
-        return True
-    def scrape_rawPage(self,page:int):
-        try:
-            listingPage=requests.get(f"https://www.tapology.com/fightcenter?group=ufc&schedule=results&page={page}").text
-        except:
-            return None
-        rawPage = BeautifulSoup(listingPage,features="lxml")
-        return rawPage.find_all("section",class_="fcListing")
-    def scrape_EventLink(self,event):
-        linkBox=event.find("span",class_="name")
-        return linkBox.find("a",href=True)["href"]
+
     def eventScraper(self,link):
         event = Event()
         event.setUrl(link)
