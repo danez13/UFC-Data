@@ -6,14 +6,14 @@ python webscraper used to scrape data about **[UFC](https://www.ufc.com)** fight
 already implemented = ~~implemented~~
 
   - Events
-    - previous events
-    - upcoming events
     - event details
-    - event fight lists
+    - event fight
+    - fights
+    - canceled fights
   - Fights
     - results
     - fight data
   - fighters
     - average fighter data
     - fighter details
-    - personal fight lists
+    - personal fight list
