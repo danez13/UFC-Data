@@ -26,7 +26,7 @@ def scrape_eventList(page:int) -> list[str]|None:
     return eventList
 
 # scrape individual event page
-def scrape_event_page(eventFilter):
+def scrape_event_page(eventFilter) -> dict|None:
     event = {}
     url = _website + eventFilter
 
