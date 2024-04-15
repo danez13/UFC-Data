@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 from bs4.element import Tag,NavigableString
 import requests
 import datetime
+import pytz
 _headers = { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:82.0) Gecko/20100101 Firefox/82.0' } 
 def request_page(url) -> BeautifulSoup|None:
     try:
@@ -12,36 +13,26 @@ def request_page(url) -> BeautifulSoup|None:
     # return html parser
     return BeautifulSoup(htmlPage,"html.parser")
 
-def format_datetime(value:str):
-    print(value)    
-def scrape_eventDetails(event:dict,html):
-    # scrape event details for presentation image
-    event["Image"] = html.find("img")["src"]
-    # scrape event details for list of details
-    detailsList=html.find_all("li",class_="leading-normal")
-    for item in detailsList:
-        # seperate detail by name and value
-        detail = item.find_all("span")
-        key = (detail[0].text).replace(":","")
-        
-        # skip undesireable details
-        #Date is repeated twice, canceled this
-        # if(key == "Promotion Links" or key == "Event Links" or key=="Date"):
-        #     continue
-        
-        # test
-        if(key!="Date/Time"):
-            continue
+def format_datetime(value:str)->datetime.datetime:
+    # parse date\time
+    split = value.split(" ",5)
+    # get date and parse for year,month, and day
+    date = split[1]
+    date = date.split(".")
+    # get time and parse for hour and minute
+    time = split[3]
+    time = time.split(":")
+    # get AM or PM
+    period = split[4]
+    # account for period
+    if period == "PM":
+        HOUR = int(time[0])+12
+    else:
+        HOUR = int(time[0])
+    # time zone
+    tz = pytz.timezone("us/eastern")
+    return datetime.datetime(int(date[2]),int(date[0]),int(date[1]),HOUR,int(time[1]),tzinfo=tz)
 
-        # format Date/Time value to proper output
-        if(key=="Date/Time"):
-            value=format_datetime((detail[1].text).replace("\n",""))
-        else:
-            value = (detail[1].text).replace("\n","")
-        
-        # add gathered to event details
-        event[key]=value
-
-    # for key,value in event.items():
-    #     print(key + ": " + value)
-    # return event
+def localize_UTC(utc:float):
+    tz=pytz.timezone("US/Eastern")
+    return datetime.datetime.fromtimestamp(utc,tz)
