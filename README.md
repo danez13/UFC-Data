@@ -1,7 +1,10 @@
 # Tapology-UFC-Scraper
 ## About
 python webscraper used to scrape data about **[UFC](https://www.ufc.com)** fighting promotion from **[Tapology](https://www.tapology.com)**
-
+## Dependencies
+  ```
+  pip install -r requirements.txt
+  ```
 ## Check list
 already implemented = ~~implemented~~
 
