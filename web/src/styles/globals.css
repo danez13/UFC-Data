@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+:root {
+  --background: #EEEEEE;
+  --intermediate: #BFBFBF;
+  --foreground: #111111;
+  --primary: #FCBA03;
+  --secondary: #0345FC;
+}
+
+html,body {
+  background: var(--background);
+  color: var(--foreground);
+  margin: 0;
+  padding: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+* {
+  box-sizing:border-box;
+}
+
+hr {
+  color: var(--intermediate);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background:#111111;
+    --foreground: #EEEEEE;
+    --intermediate: #3F3F3F;
+  }
+
+  html,body{
+    background: var(--background);
+    color: var(--foreground);
+  }
+}
+
+body {
+ display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5vh 5vw;
+  z-index: 0;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  flex-grow: 1;
+  width: 100vw;
+  min-height: 100vh;
+  gap: 30px;
+}

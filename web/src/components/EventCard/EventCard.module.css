@@ -1,0 +1,9 @@
+.card{
+    background: var(--intermediate);
+}
+.card:hover{
+    scale: 1.05;
+    transition: scale 0.2s ease-in-out;
+    border: 1px solid var(--primary);
+    box-shadow: 0 0 15px 0 var(--primary);
+}
